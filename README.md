@@ -36,6 +36,37 @@ Temporary wires are created to store the outputs of each stage. These are then c
 
 The design was tested for **4-, 8-, and 16-point** Radix-2 DIF FFTs.
 
+
+All values were represented in **signed 8.8 fixed-point notation**.
+
+---
+
+## Discussion
+
+### Design Challenges  
+A key challenge was **managing the stage-wise data flow**, i.e., storing intermediate results correctly and passing them to the next stage. This concept is well illustrated in this video:  
+DSP#47 Problem on 8-point DFT using DIF FFT — *EC Academy* (YouTube)
+
+### Improvements  
+- Twiddle factors ideally don’t require 8 integer bits, since their range is [-1, 1]. Using more fractional bits (e.g., 0.15 format) could save area and improve accuracy.
+
+---
+
+## Conclusion
+
+A Python script was developed to generate synthesizable Verilog code for an **N-point DIF FFT using Radix-2**. It automatically generates all necessary stages and butterfly instances given a value of N.
+
+Two foundational modules were written before the FFT:
+1. **Multiplier module** (`n_mult`) using shift-and-add in signed 8.8 fixed-point format.
+2. **Butterfly module**, which uses the multiplier to compute frequency-domain outputs.
+
+---
+
+## Future Work
+
+- Explore **recursive or hierarchical FFT design**: build larger FFTs using smaller FFT cores (e.g., using two 8-point FFTs to construct a 16-point FFT).
+- Investigate **resource sharing**, pipelining, or memory-optimized approaches for hardware implementation of 512-point FFTs.
+
 Validation was done by comparing Verilog outputs to a Python-based FFT implementation, verified via:
 
 [FFT Calculator (SciStatCalc)](https://scistatcalc.blogspot.com/2013/12/fft-calculator.html)
