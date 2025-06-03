@@ -36,9 +36,11 @@ Temporary wires are created to store the outputs of each stage. These are then c
 
 The design was tested for **4-, 8-, and 16-point** Radix-2 DIF FFTs.
 
-
 All values were represented in **signed 8.8 fixed-point notation**.
 
+Validation was done by comparing Verilog outputs to a Python-based FFT implementation, verified via:
+
+[FFT Calculator (SciStatCalc)](https://scistatcalc.blogspot.com/2013/12/fft-calculator.html)
 ---
 
 ## Discussion
@@ -66,7 +68,3 @@ Two foundational modules were written before the FFT:
 
 - Explore **recursive or hierarchical FFT design**: build larger FFTs using smaller FFT cores (e.g., using two 8-point FFTs to construct a 16-point FFT).
 - Investigate **resource sharing**, pipelining, or memory-optimized approaches for hardware implementation of 512-point FFTs.
-
-Validation was done by comparing Verilog outputs to a Python-based FFT implementation, verified via:
-
-[FFT Calculator (SciStatCalc)](https://scistatcalc.blogspot.com/2013/12/fft-calculator.html)
