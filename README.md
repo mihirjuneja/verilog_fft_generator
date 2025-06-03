@@ -70,5 +70,3 @@ Two foundational modules were written before the FFT:
 Validation was done by comparing Verilog outputs to a Python-based FFT implementation, verified via:
 
 [FFT Calculator (SciStatCalc)](https://scistatcalc.blogspot.com/2013/12/fft-calculator.html)
-
-Example input:  
